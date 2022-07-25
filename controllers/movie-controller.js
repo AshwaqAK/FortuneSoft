@@ -1,7 +1,7 @@
 const Movie = require("../models/movie-model");
 
 // get movie list
-exports.getMovieList = (req) => {
+exports.getMovieList = () => {
     return new Promise(async (resolve, reject) => {
         try {
             const movieResult = await Movie.find({});
@@ -12,8 +12,8 @@ exports.getMovieList = (req) => {
     });
 };
 
-// get movie list
-exports.getMovieByGenres = (req) => {
+// get movie list by genres
+exports.getMovieByGenres = () => {
     return new Promise(async (resolve, reject) => {
         try {
             const movieResult = await Movie.aggregate([{
@@ -46,7 +46,7 @@ exports.getMovieByGenres = (req) => {
                     "movies.genres"
                 ]
             }]);
-            resolve({ message: "Successfull Get By Genres Movie", movieResult })
+            resolve({ message: "Successfull Get Movie By Genres", movieResult })
         } catch (error) {
             reject({ error: error.message });
         }
